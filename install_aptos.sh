@@ -22,19 +22,28 @@ function make_folder {
   wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
   wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
   wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/fullnode.yaml
+  wget https://devnet.aptoslabs.com/genesis.blob
+  wget https://devnet.aptoslabs.com/waypoint.txt
   
 }
 function install_aptos {
   cargo install --git https://github.com/aptos-labs/aptos-core.git aptos --tag aptos-cli-latest
-  which aptos
+  cd $HOME/.cargo/bin
+  aptos genesis generate-keys --output-dir ~/$WORKSPACE 
 }
-
+function update_docker {
+  sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+  sudo chmod +x /usr/bin/docker-compose
+}
 
 
 colors
 
 line
 logo
+line
+echo -e "${RED}обновляем Docker${NORMAL}"
+update_docker
 line
 echo -e "${RED}Создаем папку TESTNET и начинаем установку APTOS CLI ${NORMAL}"
 line
