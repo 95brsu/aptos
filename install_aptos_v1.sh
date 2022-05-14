@@ -46,10 +46,12 @@ EOF
   }
   
   function install_aptos_v1 {
+  apt install unzip
   cd ~/$WORKSPACE
   wget https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-v0.1.0/framework.zip
   unzip framework.zip
-  
+  aptos genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
+  docker-compose up -d
   }
   
 function update_docker {
