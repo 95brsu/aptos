@@ -22,8 +22,7 @@ function make_folder {
   wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
   wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
   wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/fullnode.yaml
-  wget https://devnet.aptoslabs.com/genesis.blob
-  wget https://devnet.aptoslabs.com/waypoint.txt
+  
   
 }
 function install_aptos {
