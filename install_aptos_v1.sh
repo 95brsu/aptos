@@ -56,11 +56,17 @@ EOF
   docker-compose up -d
   }
   
-function update_docker {
-  sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
-  sudo chmod +x /usr/bin/docker-compose
+function update_docker-compose {
+  curl -SL httpsgithub.comdockercomposereleasesdownloadv2.5.0docker-compose-linux-x86_64 -o usrlocalbindocker-compose
+  sudo chmod +x usrlocalbindocker-compose
+  sudo ln -s usrlocalbindocker-compose usrbindocker-compose
+   
 }
-
+function update_docker {
+  curl -fsSL httpsget.docker.com -o get-docker.sh
+  sudo sh get-docker.sh
+   
+}
 
 
 
@@ -71,6 +77,7 @@ logo
 line
 echo -e "${RED}обновляем Docker${NORMAL}"
 update_docker
+update_docker-compose
 line
 echo -e "${RED}Создаем папку TESTNET и начинаем установку APTOS CLI ${NORMAL}"
 line
