@@ -26,14 +26,16 @@ function make_folder {
   
 }
 function install_aptos {
+  IPADDR=$(curl ifconfig.me) 
+  sleep 2 
   cargo install --git https://github.com/aptos-labs/aptos-core.git aptos --tag aptos-cli-latest
   cd $HOME/.cargo/bin
   aptos genesis generate-keys --output-dir ~/$WORKSPACE 
   aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
     --username $USERNAME \
-    --validator-host $IP:6180 \
-    --full-node-host $IP:6182
+    --validator-host $IPADDR:6180 \
+    --full-node-host $IPADDR:6182
 
 cd ~/$WORKSPACE
 cat << EOF > layout.yaml
