@@ -57,13 +57,12 @@ EOF
   }
   
 function update_docker-compose {
-  curl -SL httpsgithub.comdockercomposereleasesdownloadv2.5.0docker-compose-linux-x86_64 -o usrlocalbindocker-compose
-  sudo chmod +x usrlocalbindocker-compose
-  sudo ln -s usrlocalbindocker-compose usrbindocker-compose
+  sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+  sudo chmod +x /usr/bin/docker-compose
    
 }
 function update_docker {
-  curl -fsSL httpsget.docker.com -o get-docker.sh
+  curl -fsSL https://get.docker.com -o get-docker.sh
   sudo sh get-docker.sh
    
 }
