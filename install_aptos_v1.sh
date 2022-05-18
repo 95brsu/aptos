@@ -28,6 +28,7 @@ function make_folder {
 function install_aptos {
   IPADDR=$(curl ifconfig.me) 
   sleep 2 
+  apt install cargo
   cargo install --git https://github.com/aptos-labs/aptos-core.git aptos --tag aptos-cli-latest
   cd $HOME/.cargo/bin
   aptos genesis generate-keys --output-dir ~/$WORKSPACE 
